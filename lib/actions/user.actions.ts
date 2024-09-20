@@ -12,13 +12,17 @@ export async function createUser(user: CreateUserParams) {
   try {
     await connectToDatabase();
 
+    console.log("Creating user in MongoDB:", user);
     const newUser = await User.create(user);
+    console.log("User created successfully:", newUser);
 
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
-    handleError(error);
+    console.error("Error creating user:", error);
+    throw new Error("User creation failed");
   }
 }
+
 
 // READ
 export async function getUserById(userId: string) {

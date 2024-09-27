@@ -4,12 +4,12 @@ export interface IImage extends Document {
     title: string;
     transformationType: string;
     publicId: string;
-    secureUrl: string; 
+    secureURL: string; 
     width?: number;
     height?: number;
     config?: object; // Consider defining a more specific interface if the config shape is known
     // config?: Record<string, any>; // Using Record to type a generic object
-    transformationUrl?: string; 
+    transformationURL?: string; 
     aspectRatio?: string;
     color?: string;
     prompt?: string;

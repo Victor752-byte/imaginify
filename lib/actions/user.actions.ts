@@ -1,4 +1,3 @@
-'use server'
 "use server";
 
 import { revalidatePath } from "next/cache";
@@ -12,17 +11,13 @@ export async function createUser(user: CreateUserParams) {
   try {
     await connectToDatabase();
 
-    console.log("Creating user in MongoDB:", user);
     const newUser = await User.create(user);
-    console.log("User created successfully:", newUser);
 
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
-    console.error("Error creating user:", error);
-    throw new Error("User creation failed");
+    handleError(error);
   }
 }
-
 
 // READ
 export async function getUserById(userId: string) {

@@ -1,4 +1,5 @@
-import mongoose, { Mongoose } from 'mongoose';
+import mongoose, { Mongoose } from "mongoose";
+
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
@@ -34,8 +35,15 @@ export const connectToDatabase = async () => {
       console.log("Successfully connected to MongoDB");
       return cached.conn;
     } catch (error) {
-      console.error("Error connecting to MongoDB:", error);
-      throw new Error("MongoDB connection failed");
+      // Type assertion to handle error as an instance of Error
+    if (error instanceof Error) {
+      console.error("Error connecting to MongoDB:", error.message, error.stack);
+    } else {
+      console.error("Unexpected error connecting to MongoDB:", error);
     }
-  };
+    throw new Error("MongoDB connection failed");
+  }
+    }
+
+
   

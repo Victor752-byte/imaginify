@@ -84,11 +84,12 @@ export async function getImageById(imageId: string) {
 
     const image = await populateUser(Image.findById(imageId));
 
-    if(!image) throw new Error("Image not found");
+    // if(!image) throw new Error("Image not found");
 
     return JSON.parse(JSON.stringify(image));
   } catch (error) {
-    handleError(error)
+    // handleError(error)
+    console.log('image not found because: ', error)
   }
 }
 

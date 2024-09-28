@@ -91,6 +91,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
         prompt: values.prompt,
         color: values.color
       }
+      console.log(imageData)
 
       if(action === 'Add') {
         try {
@@ -103,7 +104,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           if(newImage) {
             form.reset()
             setImage(data)
-            router.push(`/transformation/${newImage._id}`)
+            router.push(`/transformations/${newImage._id}`)
           }
         } catch (error) {
           console.log(error)
@@ -122,7 +123,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
           })
 
           if(updatedImage) {
-            router.push(`/transformation/${updatedImage._id}`)
+            router.push(`/transformations/${updatedImage._id}`)
           }
         } catch (error) {
           console.log(error)
@@ -166,6 +167,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
         }
       }))
     }, 1000)();
+    return onChangeField(value)
   }
 
   // TODO: Return to updateCredits 
